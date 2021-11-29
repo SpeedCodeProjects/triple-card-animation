@@ -1,0 +1,108 @@
+/* ------ Variables ----- */
+
+:root {
+  --background: #a6a4a5;
+  --rectangle1: #0d0b0c;
+  --rectangle2: #262426;
+  --rectangle3: #595454;
+}
+
+/* ------ Layout ----- */
+
+body {
+  height: 100vh;
+  margin: 0;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+}
+
+/* ------ Rectangle Styles ----- */
+
+#rectangle1,
+#rectangle2,
+#rectangle3 {
+  position: absolute;
+  fill-opacity: 0;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  stroke-width: 1px;
+  stroke-dasharray: 350;
+}
+
+#rectangle1 {
+  fill: var(--rectangle1);
+  left: calc(50% + 80px);
+  animation: strokeAnimation 0.8s 0.5s cubic-bezier(0.54, 0, 0, 0.99),
+    fillAnimation 1s 0.8s ease-in-out,
+    rectangle1Animation 0.5s 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+#rectangle2 {
+  fill: var(--rectangle2);
+  left: 50%;
+  animation: strokeAnimation 0.8s 0.3s cubic-bezier(0.54, 0, 0, 0.99),
+    fillAnimation 1s 0.8s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+#rectangle3 {
+  fill: var(--rectangle3);
+  left: calc(50% - 80px);
+  animation: strokeAnimation 0.8s cubic-bezier(0.54, 0, 0, 0.99),
+    fillAnimation 1s 0.8s ease-in-out,
+    rectangle3Animation 0.5s 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: forwards;
+}
+
+/* ------ Animations ----- */
+
+@keyframes strokeAnimation {
+  from {
+    stroke: white;
+    stroke-dashoffset: 350;
+  }
+
+  to {
+    stroke: white;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillAnimation {
+  from {
+    stroke-opacity: 1;
+    fill-opacity: 0;
+  }
+
+  to {
+    stroke-opacity: 0;
+    fill-opacity: 1;
+  }
+}
+
+@keyframes rectangle1Animation {
+  from {
+    left: calc(50% + 80px);
+  }
+
+  to {
+    left: calc(50% - 80px);
+  }
+}
+
+@keyframes rectangle3Animation {
+  from {
+    left: calc(50% - 80px);
+  }
+
+  to {
+    left: calc(50% + 80px);
+  }
+}
